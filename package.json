@@ -24,7 +24,7 @@
     "url": "https://github.com/Qartde/RAHMANI-XMD.git"
   },
   "dependencies": {
-    "@whiskeysockets/baileys": "github:Jeliostarr/DEV-Baileys#main",
+    "@whiskeysockets/baileys": "npm:bmbsession-baileys@^1.0.0",
     "awesome-phonenumber": "^6.8.0",
     "body-parser": "^1.20.2",
     "express": "^4.19.2",

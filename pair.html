@@ -3,259 +3,74 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RAHMANI-XMD SESSION</title>
+  <title>RAHMANI-XMD PAIR CODE</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 20px;
-      background: url("https://files.catbox.moe/aktbgo.jpg") no-repeat center center fixed;
-      background-size: cover;
-      font-family: 'Segoe UI', Arial, sans-serif;
+      display: flex; justify-content: center; align-items: center;
+      min-height: 100vh; padding: 20px;
+      background: url("https://files.catbox.moe/aktbgo.jpg") center/cover;
+      font-family: 'Segoe UI', sans-serif;
     }
-
     body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.65);
-      z-index: -1;
+      content: ''; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.7); z-index: -1;
     }
-
     .box {
-      width: 100%;
-      max-width: 360px;
-      padding: 30px 22px;
-      background: rgba(15, 15, 20, 0.9);
-      border-radius: 16px;
-      box-shadow: 0 0 30px rgba(89, 53, 172, 0.4),
-                  0 0 60px rgba(193, 23, 54, 0.2);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      text-align: center;
-      animation: fadeIn 0.5s ease-in-out;
+      background: rgba(15,15,20,0.9); padding: 30px 22px;
+      border-radius: 16px; max-width: 360px; width: 100%;
+      text-align: center; backdrop-filter: blur(12px);
+      box-shadow: 0 0 30px rgba(89,53,172,0.5);
     }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .icon {
-      font-size: 42px;
-      color: #5935ac;
-      margin-bottom: 12px;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.08); }
-    }
-
-    h3 {
-      color: #fff;
-      font-size: 19px;
-      margin-bottom: 8px;
-      letter-spacing: 1.5px;
-      font-weight: 800;
-      text-transform: uppercase;
-    }
-
-    .subtitle {
-      color: #999;
-      font-size: 12px;
-      margin-bottom: 20px;
-      font-weight: 400;
-    }
-
-    .hint {
-      color: #aaa;
-      font-size: 12px;
-      margin-bottom: 6px;
-      line-height: 1.5;
-    }
-
-    .hint b { color: #25d366; }
-
+    h3 { color: #fff; font-size: 19px; margin-bottom: 8px; }
+    p { color: #aaa; font-size: 12px; margin-bottom: 20px; }
     .input-container {
-      display: flex;
-      background: #000;
-      border-radius: 12px;
-      padding: 5px;
-      gap: 5px;
-      margin-top: 18px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      display: flex; background: #000; padding: 5px; gap: 5px;
+      border-radius: 12px; margin-top: 18px;
     }
-
-    .input-container input {
-      border-radius: 8px;
-      background: #e8e8e8;
-      width: 100%;
-      flex: 1;
-      padding: 14px;
-      border: none;
-      border-left: 3px solid #5935ac;
-      color: #000;
-      font-size: 14px;
-      outline: none;
-      transition: all 0.3s;
+    input {
+      flex: 1; padding: 14px; border: none; border-radius: 8px;
+      background: #e8e8e8; border-left: 3px solid #5935ac;
+      font-size: 14px; outline: none;
     }
-
-    .input-container input:focus {
-      border-left: 3px solid #c01736;
-      box-shadow: 0 0 12px rgba(89, 53, 172, 0.5);
+    input:focus { border-left-color: #c01736; }
+    button {
+      padding: 14px 18px; background: linear-gradient(135deg, #5935ac, #c01736);
+      color: #fff; border: none; border-radius: 8px;
+      font-weight: 700; font-size: 12px; cursor: pointer;
+      letter-spacing: 1px; transition: 0.3s;
     }
-
-    .input-container input:disabled {
-      opacity: 0.7;
-      cursor: not-allowed;
-    }
-
-    .input-container button {
-      padding: 14px 18px;
-      background: linear-gradient(135deg, #5935ac 0%, #c01736 100%);
-      font-weight: 700;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.3s;
-      font-size: 12px;
-      white-space: nowrap;
-    }
-
-    .input-container button:hover:not(:disabled) {
-      transform: scale(1.04);
-      box-shadow: 0 0 18px rgba(193, 23, 54, 0.6);
-    }
-
-    .input-container button:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-
-    #pair {
-      margin-top: 16px;
-      min-height: 30px;
-    }
-
-    #pair .status {
-      color: #f0ad4e;
-      font-size: 13px;
-    }
-
-    #pair .error {
-      color: #f44336;
-      font-size: 13px;
-    }
-
+    button:hover:not(:disabled) { transform: scale(1.05); }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    #pair { margin-top: 16px; min-height: 30px; }
+    .status { color: #f0ad4e; font-size: 13px; }
+    .error { color: #f44336; font-size: 13px; }
     #copy {
-      display: inline-block;
-      padding: 12px 22px;
-      background: linear-gradient(135deg, #c01736 0%, #5935ac 100%);
-      border-radius: 10px;
-      color: #fff;
-      font-weight: bold;
-      font-size: 15px;
-      letter-spacing: 2px;
-      cursor: pointer;
-      transition: all 0.3s;
-      animation: glow 1.5s ease-in-out infinite alternate;
-      margin-top: 8px;
+      display: inline-block; padding: 12px 22px; margin-top: 8px;
+      background: linear-gradient(135deg, #c01736, #5935ac);
+      border-radius: 10px; color: #fff; font-weight: bold;
+      font-size: 15px; letter-spacing: 2px; cursor: pointer;
+      animation: glow 1.5s infinite alternate;
     }
-
-    #copy:hover { transform: scale(1.05); }
-
     @keyframes glow {
-      from { box-shadow: 0 0 10px rgba(193, 23, 54, 0.5); }
-      to { box-shadow: 0 0 22px rgba(89, 53, 172, 0.9); }
-    }
-
-    #copy .code {
-      font-size: 20px;
-      letter-spacing: 4px;
-      font-weight: 800;
-    }
-
-    #copy .label {
-      font-size: 11px;
-      letter-spacing: 1px;
-      display: block;
-      margin-bottom: 4px;
-      opacity: 0.9;
-    }
-
-    #waiting {
-      color: #f0ad4e;
-      font-size: 12px;
-      display: block;
-      margin-top: 12px;
-      animation: blink 1.5s infinite;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
-
-    .footer {
-      margin-top: 18px;
-      padding-top: 14px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      font-size: 11px;
-      color: #666;
-    }
-
-    .footer a {
-      color: #5935ac;
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    .footer a:hover { color: #c01736; }
-
-    @media (max-width: 480px) {
-      .box { padding: 24px 18px; }
-      h3 { font-size: 16px; }
-      .icon { font-size: 34px; }
-      .input-container { flex-direction: column; }
-      .input-container input, .input-container button { width: 100%; border-radius: 8px; }
+      from { box-shadow: 0 0 10px rgba(193,23,54,0.5); }
+      to { box-shadow: 0 0 22px rgba(89,53,172,0.9); }
     }
   </style>
 </head>
 <body>
-
   <div class="box">
-    <div class="icon">
-      <i class="fas fa-shield-halved"></i>
-    </div>
-
     <h3>⚡ RAHMANI-XMD ⚡</h3>
-    <p class="subtitle">SESSION GENERATOR</p>
-
-    <p class="hint">🔹 Enter your number with country code</p>
-    <p class="hint">🔹 Example: <b>255693629079</b></p>
-
+    <p>Enter your WhatsApp number with country code</p>
+    <p style="color:#25d366;font-size:11px">Example: 255693629079</p>
+    
     <div class="input-container">
-      <input type="tel" id="number" placeholder="255XXXXXXXXX" autocomplete="off" inputmode="numeric">
+      <input type="tel" id="number" placeholder="255XXXXXXXXX" autocomplete="off">
       <button id="submit">SUBMIT</button>
     </div>
-
-    <a id="waiting" style="display:none;">⏳ Generating pair code, please wait...</a>
-
+    
     <main id="pair"></main>
-
-    <div class="footer">
-      © 2026 <a href="https://whatsapp.com/channel/0029VatokI45EjxufALmY32X">RAHMANI-XMD</a> · Powered by Qartde
-    </div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
@@ -263,82 +78,35 @@
     const pairBox = document.getElementById("pair");
     const submitBtn = document.getElementById("submit");
     const numberInput = document.getElementById("number");
-    const waitingMsg = document.getElementById("waiting");
 
     async function Copy() {
       const copyEl = document.getElementById("copy");
-      if (!copyEl) return;
-
-      const codeSpan = copyEl.querySelector(".code");
-      const code = codeSpan ? codeSpan.innerText : "";
-
-      try {
-        await navigator.clipboard.writeText(code);
-      } catch (e) {
-        const temp = document.createElement("textarea");
-        temp.value = code;
-        document.body.appendChild(temp);
-        temp.select();
-        document.execCommand("copy");
-        document.body.removeChild(temp);
-      }
-
-      const originalHTML = copyEl.innerHTML;
-      copyEl.innerHTML = '<span class="label">✅ COPIED!</span>';
-      copyEl.style.background = "linear-gradient(135deg, #00c853 0%, #00e676 100%)";
-
-      setTimeout(() => {
-        copyEl.innerHTML = originalHTML;
-        copyEl.style.background = "linear-gradient(135deg, #c01736 0%, #5935ac 100%)";
-      }, 1500);
+      const code = copyEl.querySelector(".code")?.innerText || "";
+      try { await navigator.clipboard.writeText(code); } catch(e) {}
+      const original = copyEl.innerHTML;
+      copyEl.innerHTML = '<span>✅ COPIED!</span>';
+      setTimeout(() => { copyEl.innerHTML = original; }, 1500);
     }
 
     submitBtn.addEventListener("click", async (e) => {
       e.preventDefault();
-
-      const rawNumber = numberInput.value.replace(/[^0-9]/g, "");
-
-      if (!rawNumber) {
-        pairBox.innerHTML = '<span class="status">⚠️ Please enter your number!</span>';
+      const num = numberInput.value.replace(/[^0-9]/g, "");
+      
+      if (!num || num.length < 10) {
+        pairBox.innerHTML = '<span class="error">❌ Enter valid number!</span>';
         return;
       }
 
-      if (rawNumber.length < 10 || rawNumber.length > 15) {
-        pairBox.innerHTML = '<span class="error">❌ Invalid phone number!</span>';
-        return;
-      }
-
-      // Format number with spaces
-      let formatted = "";
-      let count = 0;
-      for (let i = 0; i < rawNumber.length; i++) {
-        formatted += rawNumber[i];
-        count++;
-        if ((count === 3 || count === 6) && i < rawNumber.length - 1) {
-          formatted += " ";
-        }
-      }
-
-      numberInput.type = "text";
-      numberInput.value = "+" + formatted;
-      numberInput.style.color = "#00e676";
-      numberInput.style.fontWeight = "bold";
-      numberInput.disabled = true;
       submitBtn.disabled = true;
       submitBtn.innerText = "...";
-
-      pairBox.innerHTML = '<span class="status">⏳ Connecting to WhatsApp...</span>';
-      waitingMsg.style.display = "block";
+      pairBox.innerHTML = '<span class="status">⏳ Generating code...</span>';
 
       try {
-        const { data } = await axios(`/code?number=${rawNumber}`, { timeout: 90000 });
+        const { data } = await axios(`/code?number=${num}`, { timeout: 90000 });
         const code = data.code || "";
-
-        waitingMsg.style.display = "none";
-
-        if (!code || code === "Service Unavailable" || code === "Error") {
-          pairBox.innerHTML = '<span class="error">❌ Failed to generate code. Try again.</span>';
-          numberInput.disabled = false;
+        
+        if (!code || code.includes("Unavailable")) {
+          pairBox.innerHTML = '<span class="error">❌ Failed. Try again.</span>';
           submitBtn.disabled = false;
           submitBtn.innerText = "SUBMIT";
           return;
@@ -346,19 +114,15 @@
 
         pairBox.innerHTML = `
           <div id="copy" onclick="Copy()">
-            <span class="label">TAP TO COPY</span>
-            <span class="code">${code}</span>
+            <div style="font-size:11px;margin-bottom:4px">TAP TO COPY</div>
+            <div class="code">${code}</div>
           </div>
-          <p class="hint" style="margin-top:12px">
-            Enter this code in WhatsApp → Linked Devices
+          <p style="color:#aaa;font-size:11px;margin-top:12px">
+            Enter in WhatsApp → Linked Devices
           </p>
         `;
-
       } catch (err) {
-        console.error("Pair error:", err);
-        waitingMsg.style.display = "none";
-        pairBox.innerHTML = '<span class="error">❌ Connection error. Try again.</span>';
-        numberInput.disabled = false;
+        pairBox.innerHTML = '<span class="error">❌ Connection error!</span>';
         submitBtn.disabled = false;
         submitBtn.innerText = "SUBMIT";
       }

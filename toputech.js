@@ -4,7 +4,6 @@ const path = require('path');
 const bodyParser = require("body-parser");
 
 const PORT = process.env.PORT || 8000;
-const __path = process.cwd();
 
 // ═══════════════════════════════════════════
 //   🔧 MIDDLEWARE
@@ -12,10 +11,10 @@ const __path = process.cwd();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Trust Heroku proxy (kwa IP detection)
+// Trust Heroku/Render proxy
 app.set('trust proxy', 1);
 
-// Serve static files (CSS, JS, images)
+// Serve static files (CSS, JS, images kwenye public/)
 app.use(express.static(path.join(__dirname, 'public')));
 
 // ═══════════════════════════════════════════
@@ -25,10 +24,11 @@ try {
     const qrRouter = require('./qr');
     const pairRouter = require('./pair');
     
+    // API routes
     app.use('/qr', qrRouter);
     app.use('/code', pairRouter);
-    app.use('/pair', pairRouter);
     
+    console.log("✅ Routers loaded successfully");
 } catch (e) {
     console.log("⚠️ Router error:", e.message);
 }
@@ -41,7 +41,14 @@ app.get('/', (req, res) => {
 });
 
 // ═══════════════════════════════════════════
-//   🩺 HEALTH CHECK (for Heroku/Render)
+//   📱 PAIR PAGE (HTML)
+// ═══════════════════════════════════════════
+app.get('/pair', (req, res) => {
+    res.sendFile(path.join(__dirname, 'pair.html'));
+});
+
+// ═══════════════════════════════════════════
+//   🩺 HEALTH CHECK
 // ═══════════════════════════════════════════
 app.get('/health', (req, res) => {
     res.json({
@@ -59,7 +66,8 @@ app.use((req, res) => {
     res.status(404).json({
         error: "Not Found",
         path: req.path,
-        bot: "RAHMANI-XMD"
+        bot: "RAHMANI-XMD",
+        available_routes: ["/", "/pair", "/code", "/qr", "/health"]
     });
 });
 
@@ -88,9 +96,13 @@ app.listen(PORT, () => {
 
 🚀 Server is running on port: ${PORT}
 🌐 Local URL: http://localhost:${PORT}
-📱 Pair Code: /code
-📷 QR Code: /qr
-🏠 Home: /
+
+📱 Routes:
+   🏠 Home:      /
+   📱 Pair Page: /pair
+   🔑 Pair API:  /code?number=xxx
+   📷 QR Code:   /qr
+   🩺 Health:    /health
 
 ✅ Ready to receive requests!
 `);
